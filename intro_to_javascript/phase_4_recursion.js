@@ -40,4 +40,45 @@ function fibonacci(num){
     }
 }
 
+function deepDup(arr) {
+    let dup = []
+    arr.forEach(element => {
+        if (element instanceof Array) {
+           dup.push(deepDup(element));
+        } else {
+            dup.push(element);
+        }
+    });
+    return dup
+}
 
+function mergeSort(arr) {
+    if ((arr.length === 1) || (arr.length === 0)) {
+        // debugger
+        return arr;
+    }
+
+    let middle = arr.length / 2;
+    middle = Math.floor(middle);
+    debugger
+    let leftSorted = mergeSort(arr.slice(0,middle));
+    let rightSorted = mergeSort(arr.slice(middle, arr.length));
+    debugger
+    return merge(leftSorted, rightSorted);
+}
+
+function merge(arr1, arr2) {
+    debugger
+    let merged = [];
+    while ((arr1.length > 0 )&& (arr2.length > 0)) {
+        debugger
+        if (arr1[0] < arr2[0]){
+            merged.push(arr1.shift());
+        }  else {
+            merged.push(arr2.shift());
+        }
+        debugger
+    }
+    debugger
+   return merged.concat(arr1.concat(arr2));
+}
