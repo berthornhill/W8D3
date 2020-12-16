@@ -15,3 +15,19 @@ Array.prototype.myMap = function(callback){
     return mapped;
 }
 
+Array.prototype.myReduce = function(callback, initialValue) {
+
+    let reduced = initialValue
+    this.myEach(element => {
+        if (!reduced) {
+            reduced = element;
+        } else {
+            reduced = callback(reduced, element);
+        }
+    })
+    return reduced;
+}
+
+function multiplyTwo(num1, num2) {
+    return num1 * num2;
+}
